@@ -112,9 +112,9 @@ contract OreoToken is BEP20('OreoSwap Token', 'Oreo') {
         );
 
         address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "CAKE::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "CAKE::delegateBySig: invalid nonce");
-        require(now <= expiry, "CAKE::delegateBySig: signature expired");
+        require(signatory != address(0), "Oreo::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "oreo::delegateBySig: invalid nonce");
+        require(now <= expiry, "oreo::delegateBySig: signature expired");
         return _delegate(signatory, delegatee);
     }
 
@@ -144,7 +144,7 @@ contract OreoToken is BEP20('OreoSwap Token', 'Oreo') {
         view
         returns (uint256)
     {
-        require(blockNumber < block.number, "CAKE::getPriorVotes: not yet determined");
+        require(blockNumber < block.number, "Oreo::getPriorVotes: not yet determined");
 
         uint32 nCheckpoints = numCheckpoints[account];
         if (nCheckpoints == 0) {
