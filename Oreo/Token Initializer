@@ -1,0 +1,20 @@
+pragma solidity ^0.5.0;
+
+import "@openzeppelin/upgrades/contracts/Initializable.sol";
+
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol";
+
+/**
+ * @title SimpleToken
+ */
+contract SimpleToken is Initializable, ERC20, ERC20Detailed, ERC20Mintable {
+    /**
+     * @dev Constructor that gives msg.sender all of existing tokens.
+     */
+    function initialize(address minter) public initializer {
+        ERC20Detailed.initialize("SimpleToken", "SIM", 18);
+        ERC20Mintable.initialize(minter);
+    }
+}
